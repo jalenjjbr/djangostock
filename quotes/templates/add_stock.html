@@ -29,9 +29,9 @@
         {% for item in ticker %}
             <tr>
                 <th scope="row"> {{item}} </th>
-                <td>a</td>
-                <td>b</td>
-                <td>c</td>
+                <td>3/15/2020</td>
+                <td>Klarman Hall</td>
+                <td>$10.00</td>
                 <td> <a href="{% url 'delete' item.id %}">Delete Stock</a> </td>
             </tr>
         {% endfor %}

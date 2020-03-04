@@ -37,7 +37,7 @@ def add_stock(request):
         
         if form.is_valid():
             form.save()
-            messages.success(request, ("Stock has been added!"))
+            messages.success(request, ("Ticket has been listed!"))
             return redirect('add_stock')
 
     else:    
@@ -47,5 +47,5 @@ def add_stock(request):
 def delete(request, stock_id):
     item = Stock.objects.get(pk=stock_id)
     item.delete()
-    messages.success(request, ("Stock has been deleted!"))
+    messages.success(request, ("Ticket has been purchased!"))
     return redirect(add_stock)

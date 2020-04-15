@@ -30,9 +30,10 @@
             </li>
           </ul>
           {% if user.is_authenticated %}
-          <p>Welcome, {{ user }}!</p>
+          <p class="navbar-text">Welcome, {{ user }}!</p>
+          <a class="btn btn-outline-light" href="{% url 'logout' %}">:Logout</a>
           {% else %}
-          <a class="btn btn-outline-light" href="{% url 'login' %}">Login</button>
+          <a class="btn btn-outline-light" href="{% url 'login' %}">Login</a>
           {% endif %}
         </div>
       </nav>

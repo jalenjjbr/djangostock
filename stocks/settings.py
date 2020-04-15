@@ -125,3 +125,6 @@ STATIC_URL = '/static/'
 # Activate Django-Heroku.
 #https://devcenter.heroku.com/articles/django-app-configuration
 django_heroku.settings(locals())
+
+# Set URL to redirect to after login
+LOGIN_REDIRECT_URL = '/'

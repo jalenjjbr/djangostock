@@ -7,7 +7,7 @@ urlpatterns = [
     path('add_stock.html', views.add_stock, name="add_stock"),
     path('delete/<stock_id>', views.delete, name="delete"),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/signup.html', views.signup.as_view(template_name='registration/signup.html'), name="signup"),
+    path('accounts/signup.html', views.signup, name="signup"),
 ]
 
 # URLS included (htmls located in /registration)

@@ -4,7 +4,13 @@ from django.shortcuts import render, redirect
 from .models import Stock
 from .forms import StockForm, SignUpForm
 from django.contrib import messages
+
+# for authentication
 from django.contrib.auth import login, authenticate
+
+# for email sending
+from stocks.settings import EMAIL_HOST_USER
+from django.core.mail import send_mail
 
 # Create your views here.
 
@@ -48,6 +54,14 @@ def add_stock(request):
 
 def delete(request, stock_id):
     item = Stock.objects.get(pk=stock_id)
+    seller = item.user_whole_name
+
+    #send email
+    subject = "Your ticket transaction, via FireSaleHBS"
+    message = "Dear users, we've found a ticket transaction for you!  The seller is " + seller
+    recepient = "jalenjjbr@gmail.com"
+    send_mail(subject, message, EMAIL_HOST_USER, [recepient], fail_silently = False)
+
     item.delete()
     messages.success(request, ("Ticket has been purchased!"))
     return redirect(add_stock)

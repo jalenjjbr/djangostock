@@ -2,8 +2,9 @@
 
 from django.shortcuts import render, redirect
 from .models import Stock
-from .forms import StockForm
+from .forms import StockForm, SignUpForm
 from django.contrib import messages
+from django.contrib.auth import login, authenticate
 
 # Create your views here.
 
@@ -49,3 +50,17 @@ def delete(request, stock_id):
     item.delete()
     messages.success(request, ("Ticket has been purchased!"))
     return redirect(add_stock)
+
+def signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('home')
+    else:
+        form = SignUpForm()
+    return render(request, 'accounts/signup.html', {'form': form})

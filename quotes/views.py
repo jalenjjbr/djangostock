@@ -54,13 +54,19 @@ def add_stock(request):
 
 def delete(request, stock_id):
     item = Stock.objects.get(pk=stock_id)
-    seller = item.user_whole_name
+    seller_name = item.user_whole_name
+    event = item.tickerlong
+    buyer_email = request.user.email
+    buyer_name = request.user.get_full_name()
 
     #send email
     subject = "Your ticket transaction, via FireSaleHBS"
-    message = "Dear users, we've found a ticket transaction for you!  The seller is " + seller
-    recepient = "jalenjjbr@gmail.com"
-    send_mail(subject, message, EMAIL_HOST_USER, [recepient], fail_silently = False)
+    message = "Dear users, we've found a ticket transaction for you! " \
+        + "</br></br>" + buyer_name + " would like to buy a ticket for " + event + " from " + seller_name + ".  Congrats on the match!" \
+        + "</br></br>You can use this email (you're both copied) to coordinate transfer and payment." \
+        + "</br></br>Thank you for using <a href='www.firesalehbs.com'>FireSaleHBS</a>!"
+    recepient = [buyer_email, "jalenjjbr@gmail.com"]
+    send_mail(subject, message, EMAIL_HOST_USER, recepient, fail_silently = False)
 
     item.delete()
     messages.success(request, ("Ticket has been purchased!"))

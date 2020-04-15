@@ -13,6 +13,7 @@
         <th scope="col">Date</th>
         <th scope="col">Location</th>
         <th scope="col">Asking Price</th>
+        <th scope="col">Posted by</th>
         <th scope="col">Buy?</th>
       </tr>
     </thead>
@@ -20,10 +21,11 @@
 
         {% for item in ticker %}
             <tr>
-                <th scope="row"> {{item}}</th>
-                <td>3/15/2020 {{item.date}}</td>
-                <td>Klarman Hall {{item.location}}</td>
-                <td>$10.00 {{item.price}}</td>
+                <th scope="row">{{item}}</th>
+                <td>{{item.date}}</td>
+                <td>{{item.location}}</td>
+                <td>{{item.price}}</td>
+                <td>{{item.user}}</td>
                 <td> <a href="{% url 'delete' item.id %}">Buy Ticket</a> </td>
             </tr>
         {% endfor %}
@@ -37,20 +39,22 @@
 <h1>Add a Ticket for Sale</h1>
 <br/>
 
+
 {% if user.is_authenticated %}
-  <form action="{% url 'add_stock' %}" class="form my-2 my-lg-0" method="POST">
-    {% csrf_token %}
-  <div><input class="form-control mr-sm-2" type="search" placeholder="Event Name" aria-label="Search" name="tickerlong"></div>
-  <div><input class="form-control mr-sm-2" type="date" placeholder="Date" aria-label="Search" name="date"></div>
-  <div><input class="form-control mr-sm-2" type="text" placeholder="Location" aria-label="Search" name="location"></div>
-  <div><input class="form-control mr-sm-2" type="number" placeholder="Asking Price" aria-label="Search" name="price"></div>
-  <div><input type="hidden" name="user" value="{{ user.id }}"></div>
-  <div><button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Post Ticket</button>
-  </form>
+  <div class="login-form"> 
+    <form action="{% url 'add_stock' %}" class="form my-2 my-lg-0" method="POST">
+        {% csrf_token %}
+      <div class="form-group"><input class="form-control mr-sm-2" type="search" placeholder="Event Name" aria-label="Search" name="tickerlong"></div>
+      <div class="form-group"><input class="form-control mr-sm-2" type="date" placeholder="Date" aria-label="Search" name="date"></div>
+      <div class="form-group"><input class="form-control mr-sm-2" type="text" placeholder="Location" aria-label="Search" name="location"></div>
+      <div class="form-group"><input class="form-control mr-sm-2" type="number" placeholder="Asking Price" aria-label="Search" name="price"></div>
+      <div class="form-group"><input type="hidden" name="user" value="{{ user.id }}"></div>
+      <div class="form-group"><button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Post Ticket</button>
+    </form>
+  </div>
 {% else %}
   <span>Please <a href="{% url 'login' %}">log in</a> to p.getost a ticket for sale.</span>
 {% endif %}
-
 
 
 {% endblock %}

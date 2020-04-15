@@ -10,7 +10,7 @@ class Stock(models.Model):
     date = models.DateField()
     location = models.TextField()
     price = models.DecimalField(decimal_places=2,max_digits=10)
-    user = models.User()
+    user = models.IntegerField()
 
     def __str__(self):
         return self.tickerlong

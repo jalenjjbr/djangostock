@@ -44,7 +44,7 @@
   <div><input class="form-control mr-sm-2" type="date" placeholder="Date" aria-label="Search" name="date"></div>
   <div><input class="form-control mr-sm-2" type="text" placeholder="Location" aria-label="Search" name="location"></div>
   <div><input class="form-control mr-sm-2" type="number" placeholder="Asking Price" aria-label="Search" name="price"></div>
-  <div><input type="hidden" name="user" value="{{ user }}"></div>
+  <div><input type="hidden" name="user" value="{{ user.id }}"></div>
   <div><button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Post Ticket</button>
   </form>
 {% else %}

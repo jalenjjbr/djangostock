@@ -34,7 +34,7 @@ def about(request):
 
 def add_stock(request):
     if request.method == 'POST':
-        form = StockForm(request.POST)#or None)
+        form = StockForm(request.POST or None)
         
         if form.is_valid():
             form.save()
@@ -42,8 +42,9 @@ def add_stock(request):
             return redirect('add_stock')
 
     else:    
+        form = "noform"
     ticker = Stock.objects.all()
-    return render(request, 'add_stock.html', {'ticker': ticker})
+    return render(request, 'add_stock.html', {'ticker': ticker}, {'form': form})
 
 def delete(request, stock_id):
     item = Stock.objects.get(pk=stock_id)

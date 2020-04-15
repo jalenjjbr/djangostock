@@ -43,7 +43,7 @@ def add_stock(request):
 
     else:    
         ticker = Stock.objects.all()
-        return render(request, 'add_stock.html', {'ticker': ticker})
+    return render(request, 'add_stock.html', {'ticker': ticker})
 
 def delete(request, stock_id):
     item = Stock.objects.get(pk=stock_id)

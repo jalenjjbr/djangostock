@@ -37,10 +37,16 @@
 <h1>Add a Ticket for Sale</h1>
 <br/>
 
-<form action="{% url 'add_stock' %}" class="form-inline my-2 my-lg-0" method="POST">
+{% if user.is_authenticated %}
+  <form action="{% url 'add_stock' %}" class="form-inline my-2 my-lg-0" method="POST">
     {% csrf_token %}
-<input class="form-control mr-sm-2" type="search" placeholder="Add To Listing" aria-label="Search" name="tickerlong">
-<button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Post Ticket</button>
-</form>
+  <input class="form-control mr-sm-2" type="search" placeholder="Add To Listing" aria-label="Search" name="tickerlong">
+  <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Post Ticket</button>
+  </form>
+{% else %}
+  <span>Please <a href="{% url 'login' %}">log in</a> to post a ticket for sale.</span>
+{% endif %}
+
+
 
 {% endblock %}

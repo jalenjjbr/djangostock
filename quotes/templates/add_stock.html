@@ -36,20 +36,27 @@
 </br>
 </br>
 
-<h1>Add a Ticket for Sale</h1>
 
 {% if user.is_authenticated %}
+
+  {% for field in form %}
+  {% for error in field.errors %}
+    <p style="color: red">{{ error }}</p>
+  {% endfor %}
+  {% endfor %}
+
+<p>
+  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseAddForm" aria-expanded="false" aria-controls="collapseAddForm">
+    Add a ticket for sale
+  </button>
+</p>
+<div class="collapse" id="collapseAddForm">
+  <div class="card card-body">
   <div class="float-left login-form"> 
     <form action="{% url 'add_stock' %}" class="form my-2 my-lg-0" method="POST">
         {% csrf_token %}
       <h5 class="text-center">Tell us about the ticket you're selling</h5>
 
-      {% for field in form %}
-        {% for error in field.errors %}
-          <p style="color: red">{{ error }}</p>
-        {% endfor %}
-      {% endfor %}
-      
       <div class="form-group"><input class="form-control mr-sm-2" type="search" placeholder="Event Name" aria-label="Search" name="tickerlong"></div>
       <div class="form-group"><input class="form-control mr-sm-2" type="date" placeholder="Date" aria-label="Search" name="date"></div>
       <div class="form-group"><input class="form-control mr-sm-2" type="text" placeholder="Location" aria-label="Search" name="location"></div>
@@ -58,6 +65,8 @@
       <div class="form-group"><button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Post Ticket</button>
     </form>
   </div>
+</div>
+</div>
 {% else %}
   </br>
   <span>Please <a href="{% url 'login' %}">log in</a> to post a ticket for sale.</span>

@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 class StockForm(forms.ModelForm):
     class Meta:
         model = Stock
-        fields = ["tickerlong", "date", "location", "price", "user"]
+        fields = ["tickerlong", "date", "location", "price", "user_whole_name"]
 
 class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=50, required=True, help_text='*Required')

@@ -57,7 +57,7 @@
             </li>
           </ul>
           {% if user.is_authenticated %}
-          <span class="navbar-text mr-2 align-middle">Welcome, {{ user }}!</span>
+          <span class="navbar-text mr-2 align-middle">Welcome, {{ user.get_short_name }}!</span>
           <a class="btn btn-outline-light" href="{% url 'logout' %}">Logout</a>
           {% else %}
           <a class="btn btn-outline-light" href="{% url 'login' %}">Login</a>

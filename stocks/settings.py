@@ -127,4 +127,4 @@ STATIC_URL = '/static/'
 django_heroku.settings(locals())
 
 # Set URL to redirect to after login
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/addstock.html'

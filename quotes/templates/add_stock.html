@@ -41,7 +41,7 @@
 
 
 {% if user.is_authenticated %}
-  <div class="login-form"> 
+  <div class="float-left login-form"> 
     <form action="{% url 'add_stock' %}" class="form my-2 my-lg-0" method="POST">
         {% csrf_token %}
       <div class="form-group"><input class="form-control mr-sm-2" type="search" placeholder="Event Name" aria-label="Search" name="tickerlong"></div>
@@ -53,7 +53,7 @@
     </form>
   </div>
 {% else %}
-  <span>Please <a href="{% url 'login' %}">log in</a> to p.getost a ticket for sale.</span>
+  <span>Please <a href="{% url 'login' %}">log in</a> to post a ticket for sale.</span>
 {% endif %}
 
 

@@ -11,6 +11,7 @@ from django.contrib.auth import login, authenticate
 # for email sending
 from stocks.settings import EMAIL_HOST_USER
 from django.core.mail import send_mail
+from stocks.settings import EMAIL_HEADER
 
 # Create your views here.
 
@@ -61,10 +62,11 @@ def delete(request, stock_id):
 
     #send email
     subject = "Your ticket transaction, via FireSaleHBS"
-    message = "Dear users, we've found a ticket transaction for you! " \
+    message = EMAIL_HEADER + "Dear users, we've found a ticket transaction for you! " \
         + "</br></br>" + buyer_name + " would like to buy a ticket for " + event + " from " + seller_name + ".  Congrats on the match!" \
         + "</br></br>You can use this email (you're both copied) to coordinate transfer and payment." \
-        + "</br></br>Thank you for using <a href='www.firesalehbs.com'>FireSaleHBS</a>!"
+        + "</br></br>Thank you for using <a href='www.firesalehbs.com'>FireSaleHBS</a>!" \
+        + "</body> </html>"
     recepient = [buyer_email, "jalenjjbr@gmail.com"]
     send_mail(subject, message, EMAIL_HOST_USER, recepient, fail_silently = False)
 

@@ -137,3 +137,8 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'firesalehbs@gmail.com'
 EMAIL_HOST_PASSWORD = 'jalenvinit'
+EMAIL_HEADER = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">'\
+    + '<html xmlns="https://www.w3.org/1999/xhtml"> <head> <title>FireSaleHBS</title>' \
+    + '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />' \
+    + '<meta http-equiv="X-UA-Compatible" content="IE=edge" />' \
+    + '<meta name="viewport" content="width=device-width, initial-scale=1.0 " /> </head> <body>'

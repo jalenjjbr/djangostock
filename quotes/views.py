@@ -44,7 +44,7 @@ def add_stock(request):
     else:    
         form = "noform"
     ticker = Stock.objects.all()
-    return render(request, 'add_stock.html', {'ticker': ticker}, {'form': form})
+    return render(request, 'add_stock.html', {'ticker': ticker, 'form': form})
 
 def delete(request, stock_id):
     item = Stock.objects.get(pk=stock_id)

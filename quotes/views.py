@@ -71,7 +71,7 @@ def delete(request, stock_id):
     msg_html = EMAIL_HEADER + "Dear users," \
         + "</br></br>We've found a ticket transaction for you! " \
         + "</br></br><span style='font-weight:bold'>Event: </span>" + "\"" + event + "\"" \
-        + "</br><span style='font-weight:bold'>Ticket Price: </span>" + "$" + price \
+        + "</br><span style='font-weight:bold'>Ticket Price: </span>" + "$" + str(price) \
         + "</br><span style='font-weight:bold'>Buyer: </span>" + buyer_name \
         + "</br><span style='font-weight:bold'>Seller: </span>" + seller_name \
         + "</br></br>Congrats on the match! You can use this email (you're both copied) to coordinate ticket transfer and payment." \

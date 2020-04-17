@@ -62,13 +62,17 @@ def delete(request, stock_id):
 
     #send email
     subject = "Your ticket transaction, via FireSaleHBS"
-    message = EMAIL_HEADER + "Dear users, we've found a ticket transaction for you! " \
+    msg_plain = "Dear users, we've found a ticket transaction for you! " \
+        +  buyer_name + " would like to buy a ticket for " + event + " from " + seller_name + ".  Congrats on the match!" \
+        + "\r\n You can use this email (you're both copied) to coordinate transfer and payment." \
+        + "\r\n Thank you for using FireSaleHBS!"
+    msg_html = EMAIL_HEADER + "Dear users, we've found a ticket transaction for you! " \
         + "</br></br>" + buyer_name + " would like to buy a ticket for " + event + " from " + seller_name + ".  Congrats on the match!" \
         + "</br></br>You can use this email (you're both copied) to coordinate transfer and payment." \
         + "</br></br>Thank you for using <a href='www.firesalehbs.com'>FireSaleHBS</a>!" \
         + "</body> </html>"
-    recepient = [buyer_email, "jalenjjbr@gmail.com"]
-    send_mail(subject, message, EMAIL_HOST_USER, recepient, fail_silently = False)
+    recepients = [buyer_email, "jalenjjbr@gmail.com"]
+    send_mail(subject, msg_plain, EMAIL_HOST_USER, recepients, html_message = msg_html, fail_silently = False)
 
     item.delete()
     messages.success(request, ("Ticket has been purchased!"))

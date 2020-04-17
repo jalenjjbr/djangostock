@@ -14,6 +14,7 @@
         <th scope="col">Location</th>
         <th scope="col">Asking Price</th>
         <th scope="col">Posted by</th>
+        <th scope="col">Seller email</th>
         <th scope="col">Buy?</th>
       </tr>
     </thead>
@@ -26,6 +27,7 @@
                 <td>{{item.location}}</td>
                 <td>{{item.price}}</td>
                 <td>{{item.user_whole_name}}</td>
+                <td>{{item.seller_email}</td>
                 <td> <a href="{% url 'delete' item.id %}">Buy Ticket</a> </td>
             </tr>
         {% endfor %}
@@ -62,6 +64,7 @@
       <div class="form-group"><input class="form-control mr-sm-2" type="text" placeholder="Location" aria-label="Search" name="location"></div>
       <div class="form-group"><input class="form-control mr-sm-2" type="number" placeholder="Asking Price" aria-label="Search" name="price"></div>
       <div class="form-group"><input type="hidden" name="user_whole_name" value="{{ user.get_full_name }}"></div>
+      <div class="form-group"><input type="hidden" name="seller_email" value="{{ user.email }}"></div>
       <div class="form-group"><button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Post Ticket</button>
     </form>
   </div>

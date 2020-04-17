@@ -56,9 +56,11 @@ def add_stock(request):
 def delete(request, stock_id):
     item = Stock.objects.get(pk=stock_id)
     seller_name = item.user_whole_name
+    seller_email = item.seller_email
     event = item.tickerlong
-    buyer_email = request.user.email
+    price = item.price
     buyer_name = request.user.get_full_name()
+    buyer_email = request.user.email
 
     #send email
     subject = "Your ticket transaction, via FireSaleHBS"
@@ -66,12 +68,16 @@ def delete(request, stock_id):
         +  buyer_name + " would like to buy a ticket for " + event + " from " + seller_name + ".  Congrats on the match!" \
         + "\r\n You can use this email (you're both copied) to coordinate transfer and payment." \
         + "\r\n Thank you for using FireSaleHBS!"
-    msg_html = EMAIL_HEADER + "Dear users, we've found a ticket transaction for you! " \
-        + "</br></br>" + buyer_name + " would like to buy a ticket for " + event + " from " + seller_name + ".  Congrats on the match!" \
-        + "</br></br>You can use this email (you're both copied) to coordinate transfer and payment." \
+    msg_html = EMAIL_HEADER + "Dear users," \
+        + "</br></br>We've found a ticket transaction for you! " \
+        + "</br></br><span style='font-weight:bold'>Event: </span>" + "\"" + event + "\"" \
+        + "</br><span style='font-weight:bold'>Ticket Price: </span>" + "$" + price \
+        + "</br><span style='font-weight:bold'>Buyer: </span>" + buyer_name \
+        + "</br><span style='font-weight:bold'>Seller: </span>" + seller_name \
+        + "</br></br>Congrats on the match! You can use this email (you're both copied) to coordinate ticket transfer and payment." \
         + "</br></br>Thank you for using <a href='www.firesalehbs.com'>FireSaleHBS</a>!" \
         + "</body> </html>"
-    recepients = [buyer_email, "jalenjjbr@gmail.com"]
+    recepients = [buyer_email, seller_email]
     send_mail(subject, msg_plain, EMAIL_HOST_USER, recepients, html_message = msg_html, fail_silently = False)
 
     item.delete()

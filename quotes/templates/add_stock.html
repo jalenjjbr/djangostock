@@ -14,7 +14,6 @@
         <th scope="col">Location</th>
         <th scope="col">Asking Price</th>
         <th scope="col">Posted by</th>
-        <th scope="col">Seller email</th>
         <th scope="col">Buy?</th>
       </tr>
     </thead>
@@ -27,7 +26,6 @@
                 <td>{{item.location}}</td>
                 <td>{{item.price}}</td>
                 <td>{{item.user_whole_name}}</td>
-                <td>{{item.seller_email}}</td>
                 <td> <a href="{% url 'delete' item.id %}">Buy Ticket</a> </td>
             </tr>
         {% endfor %}

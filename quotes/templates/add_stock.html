@@ -27,8 +27,8 @@
 
         {% for item in ticker %}
             <tr>
-                <td scope="row">{{item}}
-                </br><span style="background-color: #6f6f6f; font-style: italic;">{{item.date}}, {{item.location}}</span></td>
+                <td scope="row"><span style="font-weight: bold;">{{item}}</span>
+                </br><span style="color: #6f6f6f; font-style: italic;">{{item.date}}, {{item.location}}</span></td>
                 <td>{{item.price}}</td>
                 <td>{{item.user_whole_name}}</td>
                 {% if user.is_authenticated %}

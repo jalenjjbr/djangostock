@@ -1,17 +1,6 @@
 {% extends 'base.html' %}
 
-<style>
-  #searchTicketInput {
-    background-image: url('https://image.flaticon.com/icons/svg/2089/2089805.svg');
-    background-position: 10px 10px;
-    background-repeat: no-repeat;
-    width: 100%;
-    font-size: 16px;
-    padding: 12px 20px 12px 40px;
-    border: 1px solid #ddd;
-    margin-bottom: 12px;
-  }
-</style>
+
 
 {% block content %}
 
@@ -45,7 +34,10 @@
                 <td>{{item.location}}</td>
                 <td>{{item.price}}</td>
                 <td>{{item.user_whole_name}}</td>
+                {% if user.is_authenticated %}
                 <td> <a href="{% url 'delete' item.id %}">Buy Ticket</a> </td>
+                {% else %}
+                <td> <a href="{% url 'login' item.id %}">Buy Ticket</a> </td>
             </tr>
         {% endfor %}
      

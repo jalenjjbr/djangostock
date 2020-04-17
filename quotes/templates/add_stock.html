@@ -38,6 +38,7 @@
                 <td> <a href="{% url 'delete' item.id %}">Buy Ticket</a> </td>
                 {% else %}
                 <td> <a href="{% url 'login' item.id %}">Buy Ticket</a> </td>
+                {% endif %}
             </tr>
         {% endfor %}
      

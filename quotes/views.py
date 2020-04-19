@@ -45,7 +45,7 @@ def add_stock(request):
         
         if form.is_valid():
             form.save()
-            messages.success(request, ("Ticket has been listed!"))
+            messages.info(request, ("Your ticket has been listed!"))
             return redirect('add_stock')
 
     else:    
@@ -68,20 +68,20 @@ def delete(request, stock_id):
         +  buyer_name + " would like to buy a ticket for " + event + " from " + seller_name + ".  Congrats on the match!" \
         + "\r\n You can use this email (you're both copied) to coordinate transfer and payment." \
         + "\r\n Thank you for using FireSaleHBS!"
-    msg_html = EMAIL_HEADER + "Dear users," \
-        + "</br></br>We've found a ticket transaction for you! " \
-        + "</br></br><span style='font-weight:bold'>Event: </span>" + "\"" + event + "\"" \
-        + "</br><span style='font-weight:bold'>Ticket Price: </span>" + "$" + str(price) \
-        + "</br><span style='font-weight:bold'>Buyer: </span>" + buyer_name \
-        + "</br><span style='font-weight:bold'>Seller: </span>" + seller_name \
-        + "</br></br>Congrats on the match! You can use this email (you're both copied) to coordinate ticket transfer and payment." \
-        + "</br></br>Thank you for using <a href='www.firesalehbs.com'>FireSaleHBS</a>!" \
-        + "</body> </html>"
+    msg_html = EMAIL_HEADER + "<table><tr>Dear users,</tr>" \
+        + "<tr> </tr><tr>We've found a ticket transaction for you! </tr>" \
+        + "<tr> </tr><tr><span style='font-weight:bold'>Event: </span>" + "\"" + event + "\" </tr>" \
+        + "<tr><span style='font-weight:bold'>Ticket Price: </span>" + "$" + str(price) + "</tr>" \
+        + "<tr><span style='font-weight:bold'>Buyer: </span>" + buyer_name + "</tr>" \
+        + "<tr><span style='font-weight:bold'>Seller: </span>" + seller_name + "</tr>" \
+        + "<tr> </tr><tr>Congrats on the match! You can use this email (you're both copied) to coordinate ticket transfer and payment. </tr>" \
+        + "<tr> </tr><tr>Thank you for using <a href='www.firesalehbs.com'>FireSaleHBS</a>! </tr>" \
+        + "</table> </body> </html>"
     recepients = [buyer_email, seller_email]
     send_mail(subject, msg_plain, EMAIL_HOST_USER, recepients, html_message = msg_html, fail_silently = False)
 
     item.delete()
-    messages.success(request, ("Ticket has been purchased!"))
+    messages.info(request, ("Your ticket has been claimed! Check your email for transfer and payment."))
     return redirect(add_stock)
 
 def signup(request):

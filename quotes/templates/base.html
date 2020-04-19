@@ -14,6 +14,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
     <style type="text/css">
+        body {
+          background-color: #f1f1f1;
+        }
         .login-form {
           width: 340px;
             margin: 50px auto;
@@ -44,6 +47,7 @@
           font-size: 16px;
           padding: 12px 20px 12px 40px;
           border: 1px solid #ddd;
+          border-radius: .25rem;
           margin-bottom: 12px;
         }
     </style>
@@ -81,7 +85,7 @@
 
         {% if messages %}
             {% for message in messages %}
-                <div class="alert alert-warning alert-dismissable" role="alert">
+                <div class="alert alert-danger alert-dismissable" role="alert">
                     <button class="close" data-dismiss="alert">
                         <small><sup> x </sup></small>
                     </button>
